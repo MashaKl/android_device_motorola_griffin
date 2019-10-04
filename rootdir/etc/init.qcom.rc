@@ -761,7 +761,7 @@ service init_wifi /wlan_carrier_bin.sh
 
 on nonencrypted
     setprop ro.kick.logcopy ${ro.bootreason}
-'
+
 on property:vold.decrypt=trigger_restart_framework
     setprop ro.kick.logcopy ${ro.bootreason}
 
@@ -967,11 +967,11 @@ service hci_filter_root /system/bin/wcnss_filter
     group bluetooth qcom_diag system
     disabled
 
-service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
-    class core
-    user bluetooth
-    group bluetooth system
-    oneshot
+#service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
+#    class core
+#    user bluetooth
+#    group bluetooth system
+#    oneshot
 
 service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     class late_start
@@ -1148,6 +1148,7 @@ service atfwd /system/bin/ATFWD-daemon
     class late_start
     user root
     group system radio
+    disabled
 
 on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
@@ -1227,11 +1228,11 @@ service mdm_helper /system/bin/mdm_helper
     class core
     group root system
 
-service qseecomd /system/bin/qseecomd
-    class core
-    user root
-    group root
-    writepid /dev/cpuset/system-background/tasks
+#service qseecomd /system/bin/qseecomd
+#    class core
+#    user root
+#    group root
+#    writepid /dev/cpuset/system-background/tasks
 
 service perfd /system/vendor/bin/perfd
     class main
@@ -1251,11 +1252,11 @@ service thermal-engine /system/vendor/bin/thermal-engine
     socket thermal-recv-passive-client stream 0666 system system
     writepid /dev/cpuset/system-background/tasks
 
-service time_daemon /system/bin/time_daemon
-    class late_start
-    user root
-    group root
-    writepid /dev/cpuset/system-background/tasks
+#service time_daemon /system/bin/time_daemon
+#    class late_start
+#    user root
+#    group root
+#    writepid /dev/cpuset/system-background/tasks
 
 service adsprpcd /system/bin/adsprpcd
     class main
