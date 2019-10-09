@@ -367,7 +367,7 @@ on fs
     # results in failure to launch late-start class.
 
     wait /dev/block/bootdevice/by-name/persist
-    mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1 defcontext=u:object_r:persist_file:s0
+    mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1 context=u:object_r:persist_file:s0
     restorecon_recursive /persist
     mkdir /persist/data 0700 system system
 
@@ -386,7 +386,7 @@ on fs
 
     #Mount customize partion
     wait /dev/block/bootdevice/by-name/customize
-    mount ext4 /dev/block/bootdevice/by-name/customize /customize ro discard nosuid nodev noatime nodiratime noexec defcontext=u:object_r:user_config_file:s0
+    mount ext4 /dev/block/bootdevice/by-name/customize /customize ro discard nosuid nodev noatime nodiratime noexec context=u:object_r:user_config_file:s0
 
     # use /persist as phony PDS partition
     symlink /persist /pds
